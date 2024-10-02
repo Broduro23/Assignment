@@ -1,6 +1,6 @@
 <?php
-    class signUp{
-        public function signupform(){
+    class userforms{
+        public function sign_up_form(){
             ?>
         <form>
         <div class="mb-3">
