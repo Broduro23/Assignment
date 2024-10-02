@@ -42,6 +42,34 @@
                     break;
             }
         }
+        public function insert($table, $data){
+            ksort($data);
+            $fieldDetails = NULL;
+            $fieldNames = implode('`,`',array_keys($data));
+            $fiedlValues = implode('`,`',array_values($data));
+            $sql1 = "INSERT INTO $table(`$fieldNames`)VALUES('$fieldValues')";
+            switch($sthis->db_type){
+                case 'PDO':
+                    try{
+                        $this -> connection ->exec($sql1);
+                        return TRUE;
+
+                    }
+                    catch(PDOException $e){
+                        return $sql1 . "<br>".$e->getMessage();
+                    }
+                    break;
+                case 'MYSQLi':
+                    if ($this->connection ->query($sql1)===TRUE){
+                        return TRUE;
+
+                    }
+                    else{
+                        return "Error: ".$sql1."<br>".$this->connection->error;
+                    }
+                    break;
+            }
+        }
 
 
     }
