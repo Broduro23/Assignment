@@ -8,16 +8,16 @@
         private$db_pass;
         private$db_name;
 
-        public function __construct($db_type,$db_host,$db_user,$db_pass,$db_name){
+        public function __construct($db_type,$db_host,$db_port,$db_user,$db_pass,$db_name){
             $this ->db_type = $db_type;
             $this ->db_host = $db_host;
             $this ->db_user = $db_user;
             $this ->db_pass = $db_pass;
             $this ->db_name = $db_name;
 
-            $this ->connection($db_type,$db_host,$db_user,$db_pass,$db_name);
+            $this ->connection($db_type,$db_host,$db_port,$db_user,$db_pass,$db_name);
         }
-        public function connection ($db_type,$db_host,$db_user,$db_pass,$db_name){
+        public function connection ($db_type,$db_host,$db_port,$db_user,$db_pass,$db_name){
             switch($db_type){
                 case 'PDO':
                 if ($db_port <> Null){
@@ -48,7 +48,7 @@
             $fieldNames = implode('`,`',array_keys($data));
             $fiedlValues = implode('`,`',array_values($data));
             $sql1 = "INSERT INTO $table(`$fieldNames`)VALUES('$fieldValues')";
-            switch($sthis->db_type){
+            switch($this->db_type){
                 case 'PDO':
                     try{
                         $this -> connection ->exec($sql1);
