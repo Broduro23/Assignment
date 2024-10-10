@@ -70,6 +70,19 @@
                     break;
             }
         }
+        // MySQli escape string method
+        public function escape_values($posted_values): string{
+            switch($this->$db_type){
+                case 'PDO':
+                    $this ->posted_values =addslashes($posted_values);
+                    break;
+                case 'MySQli':
+                    $this ->posted_values = $this ->connection->real_escape_string($posted_values);
+                    break;
+
+            }
+            return $this ->posted_values;
+        }
 
 
     }
