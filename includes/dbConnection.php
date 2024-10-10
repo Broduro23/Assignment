@@ -83,6 +83,26 @@
             }
             return $this ->posted_values;
         }
+        //Row Count(Count Returned results)
+        public function count_results($sql1){
+            switch($this->$db_type){
+                case 'PDO':
+                    $res = $this->coneection->prepare($sql1);
+                    $res->execute();
+                    return $res->rowCount();
+                    break;
+                case 'MySQli':
+                    if(is_object($this->connection->query($sql1))){
+                        $result = $this->connection->query($sql1);
+                        return $result ->num_rows;
+                    }
+                    else{
+                        print "Error 5: " . $sql . "<br />" . $this->connection->error . "<br />";
+                    }
+                    break;
+
+            }
+        }
 
 
     }
