@@ -48,7 +48,8 @@
             $fieldNames = implode('`,`',array_keys($data));
             $fiedlValues = implode('`,`',array_values($data));
             $sql1 = "INSERT INTO $table(`$fieldNames`)VALUES('$fieldValues')";
-            switch($this->db_type){
+            return $this->extracted($sql1);
+            /*switch($this->db_type){
                 case 'PDO':
                     try{
                         $this -> connection ->exec($sql1);
@@ -68,7 +69,7 @@
                         return "Error: ".$sql1."<br>".$this->connection->error;
                     }
                     break;
-            }
+            }*/
         }
         // MySQli escape string method
         public function escape_values($posted_values): string{

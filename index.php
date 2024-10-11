@@ -1,3 +1,3 @@
 <?php
     require 'load.php';
-    $ObjForm ->sign_up_form();
+    $ObjForm ->sign_up_form($ObjGlob);

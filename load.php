@@ -16,3 +16,6 @@ spl_autoload_register('classLoader');
     $conn = new dbConnection(DBTYPE, HOSTNAME, DBPORT, HOSTUSER, HOSTPASS, DBNAME);
     $ObjGlob = new fncs();
     $ObjSendMail  = new Sendmail();
+    $ObjAuth = new auth();
+    $ObjAuth->signup($conn, $ObjGlob, $ObjSendMail);
+    $ObjAuth->verify_code($conn, $ObjGlob, $ObjSendMail);
